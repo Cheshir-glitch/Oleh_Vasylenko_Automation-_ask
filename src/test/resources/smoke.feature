@@ -17,7 +17,8 @@ Feature: Smoke
   Scenario Outline: Check add to cart
     Given User opens '<homePage>' page
     And User enter to search field '<keyword>' and click search
-    And Click on '<name>'
+    And Click on name XBOX
+    And Choose black
     And Click click add to cart
     And Click go to checkout
     And Click continue like as guest
@@ -30,7 +31,8 @@ Feature: Smoke
   Scenario Outline: Check remove from cart
     Given User opens '<homePage>' page
     And User enter to search field '<keyword>' and click search
-    And Click on '<name>'
+    And Click on name XBOX
+    And Choose black
     And Click click add to cart
     And Click remove
 
@@ -44,17 +46,18 @@ Feature: Smoke
   Scenario Outline: Check cart after closing page and reopen
     Given User opens '<homePage>' page
     And User enter to search field '<keyword>' and click search
-    And Click on '<name>'
+    And Click on name XBOX
+    And Choose black
     And Click click add to cart
-    And User go to google on this page
+    And User go to '<google>' on this page
     And User reopen '<homePage>'
     And Check cart
 
 
     Examples:
 
-      | homePage              | keyword       |
-      | https://www.ebay.com/ | xbox series x |
+      | homePage              | keyword       | google                  |
+      | https://www.ebay.com/ | xbox series x | https://www.google.com/ |
 
   Scenario Outline: Check check help page with search field
     Given User opens '<helpPage>' page
@@ -87,13 +90,15 @@ Feature: Smoke
   Scenario Outline: Check correct value of quantity
     Given User opens '<homePage>' page
     And User enter to search field '<keyword>' and click search
-    And Click on name
+    And Click on name bicycle
     And Add correct value of '<quantity>'
+    And Click click add to cart
+    Then Check cart counter
 
     Examples:
 
-      | homePage              | keyword       |  | quantity |
-      | https://www.ebay.com/ | xbox series x |  | 3        |
+      | homePage              | keyword |  | quantity |
+      | https://www.ebay.com/ | bicycle |  | 3        |
 
 
 

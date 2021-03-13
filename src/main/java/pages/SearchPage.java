@@ -19,13 +19,45 @@ public class SearchPage extends BasePage {
     @FindBy(xpath = "//h3 [text()  = 'NEW Sony PlayStation 5 PS5 Console Disc Version ✅ IN HAND \uD83D\uDCE6 SHIPS FREE']")
     private WebElement namePlayStation;
 
-    @FindBy(xpath = "MICROSOFT XBOX SERIES X ✅ BRAND NEW ✅ NEXT DAY DELIVERY \uD83D\uDE9A TRUSTED SELLER\uD83D\uDD25")
+    @FindBy(xpath = "//h3 [text() = 'BRAND NEW SEALED Microsoft Xbox Series X and S FREE 2 day Shipping']")
     private WebElement nameXBOX;
+
+
+    @FindBy(xpath = "//h3 [text() = 'Mountain Bike/Bicycle NEW SPEED® Men/Women Fat Tire 26\"MTB Frame Full Suspension']")
+    private WebElement nameBicycle;
+
+
+    @FindBy(xpath = "//select [@class='msku-sel ']")
+    private WebElement selectXBOX;
+
+    @FindBy(xpath = "//option [text()='Series X Black']")
+    private WebElement selectXBOXBlack;
+
+    public void clickNameBicycle() {
+        nameBicycle.click();
+    }
+
+    public void clickSelectXBOX() {
+        selectXBOX.click();
+    }
+
+
+    public String getSelectXBOXValue() {
+        return selectXBOX.getAttribute("selectedindex");
+    }
+
+    public void clickSelectXBOXBlack() {
+        selectXBOXBlack.click();
+    }
+
+    public WebElement getSelectXBOXBlack() {
+        return selectXBOXBlack;
+    }
 
 
     public String getQuantityField() {
 
-      return   quantityIncorrect.getText();
+        return quantityIncorrect.getText();
     }
 
     public void enterQuantity(final String quantity) {

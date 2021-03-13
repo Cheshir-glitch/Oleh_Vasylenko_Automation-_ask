@@ -11,14 +11,6 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-
-    @FindBy(xpath = "//header")
-    private WebElement header;
-
-    @FindBy(xpath = "//footer")
-    private WebElement footer;
-
-
     @FindBy(xpath = "//a [@class='gf-if-a']//p [text() = 'Ireland' ]")
     private WebElement languageIrelandButton;
 

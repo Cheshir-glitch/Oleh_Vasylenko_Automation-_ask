@@ -4,6 +4,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import manager.PageFactoryManager;
 import pages.*;
 
@@ -23,6 +24,14 @@ public class DefinitionSteps {
     CartPage cartPage;
     PageFactoryManager pageFactoryManager;
 
+    private final static String REMOVE_MASSAGE = "was removed from your cart.";
+    private final static String LOWER_NUMBER = "Please enter a lower number";
+    private final static String INPUT_MASSAGE = "Oops, that's not a match.";
+    private final static String INCORRECT_INPUT = "asdfgsdfgxcvb";
+    private final static String ZERO = "0";
+    private final static String QUANTITY_XBOX = "1";
+    private final static String QUANTITY_BICYCLES = "3";
+
     @Before
     public void testsSetUp() throws MalformedURLException {
         pageFactoryManager = new PageFactoryManager();
@@ -30,7 +39,6 @@ public class DefinitionSteps {
 
 
     }
-
 
     @Given("User opens {string} page")
     public void openPage(final String url) {
@@ -40,8 +48,8 @@ public class DefinitionSteps {
 
     @Given("User opens sing {string} page")
     public void userOpensSingSignInPagePage(final String page) {
-    signInPage = pageFactoryManager.getSignInPage();
-    signInPage.openSingInPage(page);
+        signInPage = pageFactoryManager.getSignInPage();
+        signInPage.openSingInPage(page);
     }
 
     @And("User click language button")
@@ -49,7 +57,6 @@ public class DefinitionSteps {
         homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
         homePage.clickLanguageSwitchButton();
     }
-
 
     @And("User click Ireland button")
     public void clickLanguageIrelandButton() {
@@ -70,11 +77,10 @@ public class DefinitionSteps {
         homePage.clickSearchButton();
     }
 
-
     @And("Wait for result")
     public void waitForResult() {
         homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
-        assertTrue(homePage.getCurrentUrl().contains("asdfgsdfgxcvb"));
+        assertTrue(homePage.getCurrentUrl().contains(INCORRECT_INPUT));
 
     }
 
@@ -90,7 +96,7 @@ public class DefinitionSteps {
     public void addIncorrectValueOfQuantity(final String quantity) {
         homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
         searchPage.enterQuantity(quantity);
-        assertEquals("Please enter a lower number", searchPage.getQuantityField());
+        assertEquals(LOWER_NUMBER, searchPage.getQuantityField());
 
     }
 
@@ -98,13 +104,7 @@ public class DefinitionSteps {
     public void clickToContinueButton() {
         homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
         signInPage.clickSignInButton();
-        assertEquals("Oops, that's not a match.", signInPage.getIncorrectInputMessage());
-    }
-
-
-    @After
-    public void tearDown() {
-        pageFactoryManager.tearDown();
+        assertEquals(INPUT_MASSAGE, signInPage.getIncorrectInputMessage());
     }
 
 
@@ -113,5 +113,91 @@ public class DefinitionSteps {
         homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
         signInPage = pageFactoryManager.getSignInPage();
         signInPage.clickSignInButtonOnHomePage();
+    }
+
+    @And("Click on name XBOX")
+    public void clickOnName() {
+        searchPage = pageFactoryManager.getSearchPage();
+        searchPage = pageFactoryManager.getSearchPage();
+        searchPage.clickNameXBOX();
+
+    }
+
+    @And("Click click add to cart")
+    public void clickClickAddToCart() {
+        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+        cartPage = pageFactoryManager.getCartPage();
+        cartPage.clickAddToCartButton();
+    }
+
+    @And("Click go to checkout")
+    public void clickGoToCheckout() {
+        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+        cartPage.clickCheckOutButton();
+    }
+
+    @And("Click continue like as guest")
+    public void clickContinueLikeAsGuest() {
+        homePage.waitVisibilityOfElement(DEFAULT_TIMEOUT, cartPage.getContinueAsGuestButton());
+        cartPage.clickContinueAsGuestButton();
+    }
+
+    @And("Choose black")
+    public void chooseBlack() {
+        searchPage.clickSelectXBOX();
+        homePage.waitVisibilityOfElement(DEFAULT_TIMEOUT, searchPage.getSelectXBOXBlack());
+        searchPage.clickSelectXBOXBlack();
+        assertEquals(ZERO, searchPage.getSelectXBOXValue());
+    }
+
+    @And("Click remove")
+    public void clickRemove() {
+        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+        cartPage.clickRemoveButton();
+        homePage.waitVisibilityOfElement(DEFAULT_TIMEOUT, cartPage.getRemoveMessageVisible());
+        assertEquals(REMOVE_MASSAGE, cartPage.getRemoveMessage());
+    }
+
+    @And("User go to {string} on this page")
+    public void userGoToGoogleOnThisPage(final String url) {
+        homePage.openHomePage(url);
+    }
+
+    @And("User reopen {string}")
+    public void userReopenHomePage(final String url) {
+        homePage.openHomePage(url);
+        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+    }
+
+    @And("Check cart")
+    public void checkCart() {
+        homePage.waitVisibilityOfElement(DEFAULT_TIMEOUT, cartPage.getCartCounterVisible());
+        assertEquals(QUANTITY_XBOX, cartPage.getCartCounter());
+
+    }
+
+    @Then("Check cart counter")
+    public void checkCartCounter() {
+        homePage.waitVisibilityOfElement(DEFAULT_TIMEOUT, cartPage.getCartCounterVisible());
+        assertEquals(QUANTITY_BICYCLES, cartPage.getCartCounter());
+
+    }
+
+    @And("Click on name bicycle")
+    public void clickOnNameBicycle() {
+        searchPage = pageFactoryManager.getSearchPage();
+        searchPage.clickNameBicycle();
+    }
+
+    @And("Add correct value of {string}")
+    public void addCorrectValueOfQuantity(final String quantity) {
+        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+        searchPage.enterQuantity(quantity);
+    }
+
+
+    @After
+    public void tearDown() {
+        pageFactoryManager.tearDown();
     }
 }
