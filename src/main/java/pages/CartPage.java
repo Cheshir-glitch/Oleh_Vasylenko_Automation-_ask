@@ -10,6 +10,7 @@ public class CartPage extends BasePage {
         super(driver);
     }
 
+
     @FindBy(xpath = "//button[@class='faux-link']  [@data-test-id='cart-remove-item']")
     private WebElement removeButton;
 
@@ -21,5 +22,17 @@ public class CartPage extends BasePage {
 
     //h1[@class='page-title']  Checkout
 
+
+    public void clickRemoveButton() {
+        removeButton.click();
+    }
+
+    public void clickCheckOutButton() {
+        checkOutButton.click();
+    }
+
+    public void clickContinueAsGuestButton() {
+        continueAsGuestButton.click();
+    }
 
 }

@@ -14,7 +14,7 @@ public class SignInPage extends BasePage {
     }
 
 
-    @FindBy(xpath = "//li [@class = 'gh-t']//a[text()  = 'Sign in']")
+    @FindBy(xpath = "//li [@class = 'gh-t ']  //a[text()  = 'Sign in']")
     private WebElement signInButtonOnHomePage;
 
     @FindBy(xpath = "//button [@name  = 'signin-continue-btn']")
@@ -69,4 +69,7 @@ public class SignInPage extends BasePage {
     }
 
 
+    public void openSingInPage(final String page) {
+        driver.get(page);
+    }
 }

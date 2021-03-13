@@ -4,7 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import pages.HomePage;
+import pages.*;
 import utils.CapabilityFactory;
 
 import java.net.MalformedURLException;
@@ -35,8 +35,23 @@ public class PageFactoryManager {
         return driver.get();
     }
 
-
     public HomePage getHomePage() {
         return new HomePage(getDriver());
+    }
+
+    public SearchPage getSearchPage() {
+        return new SearchPage(getDriver());
+    }
+
+    public SignInPage getSignInPage() {
+        return new SignInPage(getDriver());
+    }
+
+    public HelpPage getHelpPage() {
+        return new HelpPage(getDriver());
+    }
+
+    public CartPage getCartPage() {
+        return new CartPage(getDriver());
     }
 }

@@ -28,11 +28,12 @@ Feature: Negative
 
 
   Scenario Outline: Check sign in without parameters
-    Given User opens '<signInPage>' page
-    And Click to continue button
+    Given User opens '<homePage>' page
+    And CLick sing in
+    And Click to continue button without parameters
 
 
     Examples:
 
-      | signInPage                                                                                 |
-      | https://signin.ebay.com/ws/eBayISAPI.dll?SignIn&ru=https%3A%2F%2Fcart.payments.ebay.com%2F |
+      | homePage              |
+      | https://www.ebay.com/ |
