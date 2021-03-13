@@ -31,6 +31,8 @@ public class DefinitionSteps {
     private final static String ZERO = "0";
     private final static String QUANTITY_XBOX = "1";
     private final static String QUANTITY_BICYCLES = "3";
+    private final static String URL_SETTINGS = "setting-shipping-options";
+    private final static String REFUND_URL = "return-item-refund";
 
     @Before
     public void testsSetUp() throws MalformedURLException {
@@ -195,6 +197,46 @@ public class DefinitionSteps {
         searchPage.enterQuantity(quantity);
     }
 
+    @And("Enter to search field {string}")
+    public void enterToSearchFieldKeyword(final String keyword) {
+        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+        helpPage = pageFactoryManager.getHelpPage();
+        helpPage.enterTextToSearchField(keyword);
+
+    }
+
+    @And("Click to first link")
+    public void clickToFirstLink() {
+        homePage.waitVisibilityOfElement(DEFAULT_TIMEOUT, helpPage.getRefundHelpButton());
+        helpPage.clickRefundHelpButton();
+    }
+
+    @And("Check the open page")
+    public void checkTheOpenPage() {
+        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+        assertTrue(helpPage.getCurrentUrl().contains(REFUND_URL));
+
+    }
+
+    @And("Click Shipping & Tracking categories")
+    public void clickShippingTrackingCategories() {
+        helpPage = pageFactoryManager.getHelpPage();
+        helpPage.clickTrackingHelpButton();
+    }
+
+    @And("Click to Shipping for Sellers")
+    public void clickToShippingForSellers() {
+        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+        helpPage.clickTrackingHelpButtonForSellers();
+    }
+
+    @And("Click Setting up your shipping options")
+    public void clickSettingUpYourShippingOptions() {
+        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+        helpPage.clickShippingOptionsButton();
+        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+        assertTrue(helpPage.getCurrentUrl().contains(URL_SETTINGS));
+    }
 
     @After
     public void tearDown() {

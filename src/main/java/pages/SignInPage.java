@@ -33,7 +33,6 @@ public class SignInPage extends BasePage {
     private WebElement incorrectInputMessage;
 
 
-
     public void clickSignInButtonOnHomePage() {
         signInButtonOnHomePage.click();
     }
@@ -43,12 +42,12 @@ public class SignInPage extends BasePage {
     }
 
     public void clickSignInButton() {
-         signInButton.click();
+        signInButton.click();
     }
 
     public void enterToEmailField(final String email) {
-         emailField.clear();
-         emailField.sendKeys(email,ENTER);
+        emailField.clear();
+        emailField.sendKeys(email, ENTER);
     }
 
     public WebElement getEmailField() {
@@ -57,7 +56,7 @@ public class SignInPage extends BasePage {
 
     public void enterToPassswordField(final String password) {
         passswordField.clear();
-        passswordField.sendKeys(password,ENTER);
+        passswordField.sendKeys(password, ENTER);
     }
 
     public WebElement getPassswordField() {

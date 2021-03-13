@@ -43,9 +43,6 @@ public class CartPage extends BasePage {
         return cartCounter.getText();
     }
 
-//a [@role ='button'] [@id='isCartBtn_btn']
-
-    //h1[@class='page-title']  Checkout
 
     public String getRemoveMessage() {
         return removeMessage.getText();

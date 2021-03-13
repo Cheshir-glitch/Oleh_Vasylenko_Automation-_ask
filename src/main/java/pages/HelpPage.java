@@ -6,19 +6,10 @@ import org.openqa.selenium.support.FindBy;
 
 import static org.openqa.selenium.Keys.ENTER;
 
-public class HelpPage extends BasePage{
+public class HelpPage extends BasePage {
     public HelpPage(WebDriver driver) {
         super(driver);
     }
-
-
-    //https://www.ebay.com/help/home
-
-    //https://www.ebay.com/help/buying/returns-refunds/return-item-refund?id=4041&st=12&pos=1&query=Return%20an%20item%20for%20a%20refund&intent=refund%20an%20item
-
-    //https://www.ebay.com/help/postage-tracking
-
-
 
 
     @FindBy(xpath = "//input [@placeholder = 'Search eBay Help...' ]")
@@ -30,13 +21,25 @@ public class HelpPage extends BasePage{
     @FindBy(xpath = "//span [@class = 't2']  [text() = 'Shipping & Tracking']")
     private WebElement trackingHelpButton;
 
-    //a[text()='Shipping for Sellers']
 
-    //div[text()='Setting up your shipping options']
+    @FindBy(xpath = "//a[text()='Shipping for Sellers']")
+    private WebElement trackingHelpButtonForSellers;
+
+    @FindBy(xpath = " //div[text()='Setting up your shipping options']")
+    private WebElement shippingOptionsButton;
+
+
+    public void clickTrackingHelpButtonForSellers() {
+        trackingHelpButtonForSellers.click();
+    }
+
+    public void clickShippingOptionsButton() {
+        shippingOptionsButton.click();
+    }
 
     public void enterTextToSearchField(final String keyword) {
-         searchField.clear();
-         searchField.sendKeys(keyword,ENTER);
+        searchField.clear();
+        searchField.sendKeys(keyword, ENTER);
     }
 
     public void clickRefundHelpButton() {
@@ -51,9 +54,9 @@ public class HelpPage extends BasePage{
         return refundHelpButton;
     }
 
-    public WebElement getTrackingHelpButton() {
-        return trackingHelpButton;
-    }
 
+    public String getCurrentUrl() {
+        return driver.getCurrentUrl();
+    }
 
 }

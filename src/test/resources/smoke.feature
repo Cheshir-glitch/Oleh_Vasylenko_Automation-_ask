@@ -74,7 +74,7 @@ Feature: Smoke
 
 
   Scenario Outline: Check check help page with categories
-    Given User opens help '<helpPage>' page
+    Given User opens '<helpPage>' page
     And Click Shipping & Tracking categories
     And Click to Shipping for Sellers
     And Click Setting up your shipping options

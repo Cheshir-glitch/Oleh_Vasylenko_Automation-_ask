@@ -73,12 +73,5 @@ public class SearchPage extends BasePage {
         nameXBOX.click();
     }
 
-    public WebElement getNamePlayStation() {
-        return namePlayStation;
-    }
-
-    public WebElement getNameXBOX() {
-        return nameXBOX;
-    }
 
 }
