@@ -26,7 +26,6 @@ public class SearchPage extends BasePage {
     @FindBy(xpath = "//h3 [text() = 'Mountain Bike/Bicycle NEW SPEED® Men/Women Fat Tire 26\"MTB Frame Full Suspension']")
     private WebElement nameBicycle;
 
-
     @FindBy(xpath = "//select [@class='msku-sel ']")
     private WebElement selectXBOX;
 

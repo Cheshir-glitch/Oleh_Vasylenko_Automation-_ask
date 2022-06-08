@@ -23,12 +23,8 @@ public class CartPage extends BasePage {
     @FindBy(xpath = "//a [@role ='button'] [@id='isCartBtn_btn']")
     private WebElement addToCart;
 
-
-
     @FindBy(xpath = "//span [text() = ' was removed from your cart.']")
     private WebElement removeMessage;
-
-
 
     @FindBy(xpath = "//i[@id = 'gh-cart-n'] ")
     private WebElement cartCounter;

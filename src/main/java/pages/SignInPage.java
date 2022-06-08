@@ -20,14 +20,11 @@ public class SignInPage extends BasePage {
     @FindBy(xpath = "//button [@name  = 'signin-continue-btn']")
     private WebElement signInButton;
 
-
     @FindBy(xpath = "//input[ @name = 'userid']")
     private WebElement emailField;
 
-
     @FindBy(xpath = "//input[ @name = 'pass']")
     private WebElement passswordField;
-
 
     @FindBy(xpath = "//p [ @id= 'signin-error-msg']")
     private WebElement incorrectInputMessage;
